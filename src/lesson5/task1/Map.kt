@@ -282,10 +282,13 @@ fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<Strin
         for(treasure in heap) {
             val weight = treasure.weight
             if(weight > w) continue
+
+            val existing = dp[w].orEmpty()
+            if(treasure in existing) continue
+
             val adjust = w - weight
             if(adjust !in dp) continue
 
-            val existing = dp[w].orEmpty()
             val new = dp[adjust]!! + setOf(treasure)
             if(existing.sumBy { it.cost } < new.sumBy { it.cost }) dp[w] = new
         }
