@@ -272,4 +272,24 @@ fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
  *     450
  *   ) -> emptySet()
  */
-fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> = TODO()
+data class Treasure(val name: String, val weight: Int, val cost: Int)
+fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> {
+    val dp = mutableMapOf(0 to setOf<Treasure>())
+    val heap = treasures.mapTo(mutableListOf()) { (k, v) -> Treasure(k, v.first, v.second) }
+    heap.sortBy { it.weight }
+
+    for(w in 0..capacity) {
+        for(treasure in heap) {
+            val weight = treasure.weight
+            if(weight > w) continue
+            val adjust = w - weight
+            if(adjust !in dp) continue
+
+            val existing = dp[w].orEmpty()
+            val new = dp[adjust]!! + setOf(treasure)
+            if(existing.sumBy { it.cost } < new.sumBy { it.cost }) dp[w] = new
+        }
+    }
+
+    return dp.maxBy { (_, v) -> v.sumBy { it.cost } }?.value?.mapTo(mutableSetOf()) { it.name }.orEmpty()
+}
