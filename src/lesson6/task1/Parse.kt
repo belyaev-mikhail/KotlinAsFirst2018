@@ -169,7 +169,24 @@ fun mostExpensive(description: String): String = TODO()
  *
  * Вернуть -1, если roman не является корректным римским числом
  */
-fun fromRoman(roman: String): Int = TODO()
+private val romans = mapOf(
+        "I" to 1, "V" to 5, "X" to 10, "L" to 50, "C" to 100, "D" to 500, "M" to 1000,
+        "IV" to 4, "IX" to 9, "XL" to 40, "XC" to 90, "CD" to 400, "CM" to 900
+)
+fun <K, V> Map<K, V>.getEntry(key: K): Pair<K, V>? = get(key)?.let { key to it }
+fun fromRoman(roman: String): Int {
+    var str = roman
+    var sum = 0
+    while (str.isNotEmpty()) {
+        val (k, v) = romans.getEntry(str.take(2))
+                ?: romans.getEntry(str.take(1))
+                ?: return -1
+        sum += v
+        str = str.drop(k.length)
+    }
+    return sum
+}
+
 
 /**
  * Очень сложная
