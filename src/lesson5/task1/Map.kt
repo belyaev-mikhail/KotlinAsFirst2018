@@ -287,7 +287,7 @@ fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<Strin
             if(treasure in existing) continue
 
             val adjust = w - weight
-            if(adjust !in dp) continue
+            if(adjust !in dp || treasure in dp[adjust]!!) continue
 
             val new = dp[adjust]!! + setOf(treasure)
             if(existing.sumBy { it.cost } < new.sumBy { it.cost }) dp[w] = new

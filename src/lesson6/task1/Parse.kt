@@ -175,6 +175,7 @@ private val romans = mapOf(
 )
 fun <K, V> Map<K, V>.getEntry(key: K): Pair<K, V>? = get(key)?.let { key to it }
 fun fromRoman(roman: String): Int {
+    if(roman.isEmpty()) return -1
     var str = roman
     var sum = 0
     while (str.isNotEmpty()) {

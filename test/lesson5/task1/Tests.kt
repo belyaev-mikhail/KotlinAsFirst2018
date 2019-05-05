@@ -1,5 +1,6 @@
 package lesson5.task1
 
+import debug.parseTestJson
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
@@ -327,6 +328,332 @@ class Tests {
                         450
                 )
         )
+
+        val treasures: Map<String, Pair<Int, Int>> = parseTestJson("""
+                    [
+  {
+    "key": "0",
+    "value": {
+      "first": 159,
+      "second": 2
+    }
+  },
+  {
+    "key": "1",
+    "value": {
+      "first": 1,
+      "second": 149
+    }
+  },
+  {
+    "key": "2",
+    "value": {
+      "first": 148,
+      "second": 1
+    }
+  },
+  {
+    "key": "3",
+    "value": {
+      "first": 423,
+      "second": 148
+    }
+  },
+  {
+    "key": "4",
+    "value": {
+      "first": 222,
+      "second": 1
+    }
+  },
+  {
+    "key": "5",
+    "value": {
+      "first": 2,
+      "second": 1
+    }
+  },
+  {
+    "key": "6",
+    "value": {
+      "first": 147,
+      "second": 430
+    }
+  },
+  {
+    "key": "7",
+    "value": {
+      "first": 2,
+      "second": 148
+    }
+  },
+  {
+    "key": "8",
+    "value": {
+      "first": 1,
+      "second": 1
+    }
+  },
+  {
+    "key": "9",
+    "value": {
+      "first": 224,
+      "second": 295
+    }
+  },
+  {
+    "key": "10",
+    "value": {
+      "first": 20,
+      "second": 1
+    }
+  },
+  {
+    "key": "11",
+    "value": {
+      "first": 149,
+      "second": 2
+    }
+  },
+  {
+    "key": "12",
+    "value": {
+      "first": 149,
+      "second": 60
+    }
+  },
+  {
+    "key": "13",
+    "value": {
+      "first": 56,
+      "second": 1
+    }
+  },
+  {
+    "key": "14",
+    "value": {
+      "first": 149,
+      "second": 1
+    }
+  },
+  {
+    "key": "15",
+    "value": {
+      "first": 148,
+      "second": 472
+    }
+  },
+  {
+    "key": "16",
+    "value": {
+      "first": 1,
+      "second": 90
+    }
+  },
+  {
+    "key": "17",
+    "value": {
+      "first": 365,
+      "second": 134
+    }
+  },
+  {
+    "key": "18",
+    "value": {
+      "first": 495,
+      "second": 148
+    }
+  },
+  {
+    "key": "19",
+    "value": {
+      "first": 174,
+      "second": 1
+    }
+  },
+  {
+    "key": "20",
+    "value": {
+      "first": 403,
+      "second": 1
+    }
+  },
+  {
+    "key": "21",
+    "value": {
+      "first": 63,
+      "second": 2
+    }
+  },
+  {
+    "key": "22",
+    "value": {
+      "first": 498,
+      "second": 148
+    }
+  },
+  {
+    "key": "23",
+    "value": {
+      "first": 149,
+      "second": 3
+    }
+  },
+  {
+    "key": "24",
+    "value": {
+      "first": 1,
+      "second": 1
+    }
+  },
+  {
+    "key": "25",
+    "value": {
+      "first": 149,
+      "second": 1
+    }
+  },
+  {
+    "key": "26",
+    "value": {
+      "first": 369,
+      "second": 148
+    }
+  },
+  {
+    "key": "27",
+    "value": {
+      "first": 174,
+      "second": 1
+    }
+  },
+  {
+    "key": "28",
+    "value": {
+      "first": 1,
+      "second": 1
+    }
+  },
+  {
+    "key": "29",
+    "value": {
+      "first": 466,
+      "second": 1
+    }
+  },
+  {
+    "key": "30",
+    "value": {
+      "first": 1,
+      "second": 149
+    }
+  },
+  {
+    "key": "31",
+    "value": {
+      "first": 64,
+      "second": 2
+    }
+  },
+  {
+    "key": "32",
+    "value": {
+      "first": 148,
+      "second": 1
+    }
+  },
+  {
+    "key": "33",
+    "value": {
+      "first": 1,
+      "second": 271
+    }
+  },
+  {
+    "key": "34",
+    "value": {
+      "first": 285,
+      "second": 82
+    }
+  },
+  {
+    "key": "35",
+    "value": {
+      "first": 149,
+      "second": 1
+    }
+  },
+  {
+    "key": "36",
+    "value": {
+      "first": 16,
+      "second": 13
+    }
+  },
+  {
+    "key": "37",
+    "value": {
+      "first": 486,
+      "second": 1
+    }
+  },
+  {
+    "key": "38",
+    "value": {
+      "first": 2,
+      "second": 2
+    }
+  },
+  {
+    "key": "39",
+    "value": {
+      "first": 1,
+      "second": 357
+    }
+  },
+  {
+    "key": "40",
+    "value": {
+      "first": 2,
+      "second": 285
+    }
+  }
+]
+                """)
+        val actual = bagPacking(treasures, 3117)
+        println(actual.sumBy { treasures[it]!!.first })
+        println(actual.sumBy { treasures[it]!!.second })
+
+        val expected = parseTestJson<Set<String>>("""
+                    [
+  "40",
+  "39",
+  "38",
+  "34",
+  "33",
+  "30",
+  "28",
+  "26",
+  "24",
+  "22",
+  "18",
+  "17",
+  "16",
+  "15",
+  "12",
+  "9",
+  "8",
+  "7",
+  "6",
+  "3",
+  "1"
+]
+                """)
+        println(expected.sumBy { treasures[it]!!.first })
+        println(expected.sumBy { treasures[it]!!.second })
+
+        assertEquals(expected, actual)
+
     }
 
     // TODO: map task tests
